@@ -1,6 +1,6 @@
 # koculture-slm-finetuning
 
-# AI는 Mz 용어를 이해할 수 있을까?
+# AI는 MZ 용어를 이해할 수 있을까?
 ## QLoRA 파인튜닝으로 SLM에 한국 신조어 가르치기
 
 > *"추구미가 뭐야?"* 라고 물으면 ChatGPT는 사전에 없는 단어라며 머뭇거립니다.
