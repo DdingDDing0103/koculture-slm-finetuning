@@ -446,18 +446,17 @@ print(tokenizer.decode(outputs[0][inputs.shape[1]:], skip_special_tokens=True))
 
 ```
 koculture-slm-finetuning/
-├── README.md                          ← 본 블로그
+├── README.md                    ← 블로그 본문
 ├── notebooks/
-│   ├── 01_data_exploration.ipynb     ← 데이터 살펴보기
-│   ├── 02_finetune_lora.ipynb        ← 학습 진행
-│   └── 03_evaluation.ipynb           ← 평가 분석
+│   └── koculture_finetuning.ipynb   ← 노트북
 ├── scripts/
-│   ├── train.py
-│   └── inference.py
-├── output/
-│   └── koculture-lora/               ← 학습된 어댑터
-├── images/                            ← 다이어그램, 그래프
-└── requirements.txt
+│   └── inference.py             ← 학습된 어댑터로 추론만 하는 코드
+├── images/                      ← README에 들어가는 그림들
+│   ├── lora_diagram.png
+│   ├── train_loss.png
+│   └── youtube_thumbnail.png
+├── requirements.txt             ← 의존성
+└── .gitignore
 ```
 
 ---
