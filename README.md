@@ -21,6 +21,13 @@
 > 위 이미지를 클릭하면 발표 영상으로 이동합니다 (약 7분).
 > 🔴 `YOUR_VIDEO_ID`를 실제 영상 ID로 교체하고, `images/youtube_thumbnail.png`를 업로드하세요.
 
+### 🤗 학습된 모델
+
+학습된 LoRA 어댑터는 Hugging Face Hub에 공개되어 있습니다. 베이스 모델 위에 어댑터를 얹어 사용합니다 (어댑터 자체는 수십 MB).
+
+> **어댑터**: [`DdingDDing0103/koculture-qwen2.5-3b-lora`](https://huggingface.co/DdingDDing0103/koculture-qwen2.5-3b-lora)
+> **베이스 모델**: [`Qwen/Qwen2.5-3B-Instruct`](https://huggingface.co/Qwen/Qwen2.5-3B-Instruct)
+
 ---
 
 ### 📑 Table of Contents
@@ -426,11 +433,11 @@ plt.savefig("images/train_loss.png", dpi=150, bbox_inches="tight")
 | 학습 시간 | 🔴 약 OO |
 | 최대 GPU 메모리 사용량 | 🔴 약 OO GB |
 
-> 6GB짜리 원본 모델을 **수십 MB 어댑터 하나로 도메인 적응**시킬 수 있다는 게 LoRA의 핵심 가치입니다. 도메인별로 어댑터를 갈아끼우면 *하나의 베이스 모델로 여러 도메인을 서빙*할 수 있습니다.
+> 6GB짜리 원본 모델을 **수십 MB 어댑터 하나로 도메인 적응**시킬 수 있다는 게 LoRA의 핵심 가치입니다. 도메인별로 어댑터를 갈아끼우면 *하나의 베이스 모델로 여러 도메인을 서빙*할 수 있습니다. 이 작은 어댑터는 학습 직후 `push_to_hub`로 Hugging Face Hub에 업로드해 공개했습니다.
 
 ### 4. 추론 데모 코드
 
-학습된 어댑터를 불러와 추론하는 예시 (`scripts/inference.py`):
+학습된 어댑터를 불러와 추론하는 예시 (`scripts/inference.py`). 어댑터를 Hugging Face Hub에 올렸으므로, **로컬 파일 없이 누구나 그대로 실행**할 수 있습니다.
 
 ```python
 import torch
@@ -451,8 +458,8 @@ base = AutoModelForCausalLM.from_pretrained(
 )
 tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-3B-Instruct")
 
-# LoRA 어댑터 결합
-model = PeftModel.from_pretrained(base, "./output/koculture-lora-final")
+# LoRA 어댑터 결합 (HF Hub에서 자동 다운로드)
+model = PeftModel.from_pretrained(base, "DdingDDing0103/koculture-qwen2.5-3b-lora")
 model.eval()
 
 messages = [{"role": "user", "content": "친구가 게임에서 봉산탈춤 춘대"}]
@@ -540,13 +547,22 @@ koculture-slm-finetuning/
 ├── scripts/
 │   ├── train.py
 │   └── inference.py
-├── output/
-│   └── koculture-lora-final/         ← 학습된 어댑터
 ├── images/                            ← 다이어그램, 그래프
-└── requirements.txt
+├── requirements.txt
+└── .gitignore                         ← output/, checkpoints/ 등 제외
 ```
 
-> 🔴 위 구조는 *목표* 구조입니다. 현재 repo에 README만 있다면, 실제 노트북·스크립트·이미지를 커밋하거나, 이 구조 설명을 실제 올라간 파일에 맞게 줄이세요.
+> **학습된 어댑터는 이 저장소에 두지 않습니다.** 어댑터(~60MB)는 깃허브의 파일 크기 제한(50MB 경고/100MB 거부)에 걸리고, 모델 가중치는 Git으로 관리하기에 부적합합니다. 대신 [Hugging Face Hub](https://huggingface.co/DdingDDing0103/koculture-qwen2.5-3b-lora)에 올리고 코드에서는 repo id로 불러옵니다. 학습 산출물 폴더는 `.gitignore`로 제외합니다.
+
+```gitignore
+# .gitignore
+output/
+checkpoints/
+.ipynb_checkpoints/
+__pycache__/
+```
+
+> 🔴 위 구조는 *목표* 구조입니다. 실제 노트북·스크립트·이미지를 커밋하고, 아직 올리지 않은 파일이 있다면 구조 설명을 실제 상태에 맞게 조정하세요.
 
 ---
 
