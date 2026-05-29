@@ -395,9 +395,9 @@ plt.savefig("images/train_loss.png", dpi=150, bbox_inches="tight")
 
 ![Training Loss](images/train_loss.png)
 > 시작 loss : 4.506  →  종료 loss : 1.102
-학습 시간 : 244.7 분
-최대 GPU 메모리 : 6.09 GB
-어댑터 크기 : 약 120 MB (fp32, HF 업로드 확인됨)
+> 학습 시간 : 244.7 분
+> 최대 GPU 메모리 : 6.09 GB
+> 어댑터 크기 : 약 120 MB (fp32, HF 업로드 확인됨)
 
 #### 자동 평가 지표
 
