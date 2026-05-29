@@ -393,6 +393,8 @@ plt.savefig("images/train_loss.png", dpi=150, bbox_inches="tight")
 ```
 
 ![Training Loss](images/train_loss.png)
+> 시작 loss : 4.506  →  종료 loss : 1.102
+
 | Epoch | Train loss | Eval loss |  
 | --- | --- | --- |
 | 1 | 1.588500 | 1.631925 |
@@ -429,11 +431,11 @@ plt.savefig("images/train_loss.png", dpi=150, bbox_inches="tight")
 | --- | --- |
 | 원본 모델 크기 (fp16) | 약 6 GB |
 | 원본 모델 크기 (4-bit 로드 시) | 약 2 GB |
-| LoRA 어댑터 크기 | 🔴 약 OO MB |
+| LoRA 어댑터 크기 | 약 120 MB |
 | 학습 가능한 파라미터 | 29.9M / 3.1B (**0.96%**) |
-| 학습 환경 | 🔴 Colab T4 / A100 (실제 사용 GPU) |
-| 학습 시간 | 🔴 약 OO |
-| 최대 GPU 메모리 사용량 | 🔴 약 OO GB |
+| 학습 환경 | Colab T4 |
+| 학습 시간 | 약 4시간 5분 |
+| 최대 GPU 메모리 사용량 | 6.09 GB |
 
 > 6GB짜리 원본 모델을 **수십 MB 어댑터 하나로 도메인 적응**시킬 수 있다는 게 LoRA의 핵심 가치입니다. 도메인별로 어댑터를 갈아끼우면 *하나의 베이스 모델로 여러 도메인을 서빙*할 수 있습니다. 이 작은 어댑터는 학습 직후 `push_to_hub`로 Hugging Face Hub에 업로드해 공개했습니다.
 
