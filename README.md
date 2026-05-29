@@ -129,7 +129,7 @@ A: "ㄹㅇ 나도 보고 깜놀. 이거 언제 다해 ㅠㅠ 조별과제도 있
 **② 토큰 길이 분포 → `max_seq_length` 결정 근거.** 각 대화(user + assistant)를 Qwen2.5 토크나이저로 인코딩한 길이를 측정했습니다.
 
 > ![토큰 길이 분포](images/eda_token_length.png)
-> 전체 샘플의 99%가 158 토큰 이내로 분포 → `max_seq_length=512`는 99% 분위수의 약 3배에 달하는 충분한 여유"
+> 전체 샘플의 99%가 158 토큰 이내로 분포 → `max_seq_length=512`는 99% 분위수의 약 3배에 달하는 충분한 여유
 
 분석 코드(`notebooks/01_data_exploration.ipynb`):
 
@@ -347,8 +347,7 @@ trainable params: 29,941,760 || all params: 3,115,749,376 || trainable%: 0.9610
 | Optimizer | paged_adamw_8bit | 메모리 절약 (QLoRA) |
 | Gradient checkpointing | True | 메모리↓ (연산량은 다소↑) |
 
-> **실행 환경.** 무료 Colab + T4 기준 약 1.5~2시간 (A100이면 약 25분). 체크포인트를 Google Drive에 주기적으로 저장(`save_steps=200`)하도록 설정해, 세션이 끊겨도 이어서 학습할 수 있게 했습니다.
-
+> **실행 환경.** 무료 Colab + T4 기준 실측 약 4시간 5분 (더 빠른 A100에서는 30분~1시간 내외로 단축 가능). 체크포인트를 Google Drive에 주기적으로 저장(`save_steps=200`)하도록 설정해, 세션이 끊겨도 이어서 학습할 수 있게 했습니다.
 ---
 
 ## IV. Evaluation & Analysis
@@ -584,8 +583,6 @@ checkpoints/
 .ipynb_checkpoints/
 __pycache__/
 ```
-
-> 🔴 위 구조는 *목표* 구조입니다. 실제 노트북·스크립트·이미지를 커밋하고, 아직 올리지 않은 파일이 있다면 구조 설명을 실제 상태에 맞게 조정하세요.
 
 ---
 
