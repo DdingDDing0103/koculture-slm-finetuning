@@ -1,26 +1,15 @@
-# 학습 산출물 (어댑터는 HF Hub에 올리니까 깃에는 안 올림)
+# 학습 산출물 — 어댑터는 Hugging Face Hub에 업로드 (repo에 두지 않음)
 output/
+checkpoints/
 
-# 파이썬 캐시
+# 사람 평가 정답 키 (블라인드 유지를 위해 비공개)
+answer_key_DO_NOT_OPEN.csv
+
+# Python / Jupyter
 __pycache__/
-*.pyc
-*.pyo
-
-# 주피터 노트북 체크포인트
+*.py[cod]
 .ipynb_checkpoints/
 
-# 모델 가중치 파일 (실수로 추가되는 거 방지)
-*.bin
-*.safetensors
-
-# OS 자동 생성 파일
+# 시스템 / 환경
+.env
 .DS_Store
-Thumbs.db
-
-# 가상환경
-.venv/
-venv/
-
-# 에디터 설정
-.vscode/
-.idea/
