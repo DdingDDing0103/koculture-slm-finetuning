@@ -123,13 +123,13 @@ A: "ㄹㅇ 나도 보고 깜놀. 이거 언제 다해 ㅠㅠ 조별과제도 있
 
 **① 신조어별 예시 수 분포.** 총 10,356개 행이 354개 신조어에 걸쳐 분포하므로 평균은 약 29개입니다. 다만 평균만으로는 부족하고, 분포가 균등한지 롱테일(long-tail)인지가 학습 난이도에 직접 영향을 줍니다.
 
-> 🔴 **[그래프 삽입]** `images/eda_examples_per_slang.png` — 신조어별 예시 수 히스토그램
-> 🔴 **[수치 채우기]** 최다 신조어 OO개 / 최소 신조어 OO개 / 중앙값 OO개
+> ![신조어별 예시 수 분포](images/eda_examples_per_slang.png)
+> 최다 신조어 36개 / 최소 신조어 5개 / 중앙값 30개
 
 **② 토큰 길이 분포 → `max_seq_length` 결정 근거.** 각 대화(user + assistant)를 Qwen2.5 토크나이저로 인코딩한 길이를 측정했습니다.
 
-> 🔴 **[그래프 삽입]** `images/eda_token_length.png` — 토큰 길이 분포
-> 🔴 **[수치 채우기]** 예: "전체 샘플의 99%가 OOO 토큰 이내 → `max_seq_length=512`로 충분히 커버됨"
+> ![토큰 길이 분포](images/eda_token_length.png)
+> 전체 샘플의 99%가 512 토큰 이내 → `max_seq_length=512`로 충분히 커버됨
 
 분석 코드(`notebooks/01_data_exploration.ipynb`):
 
