@@ -178,7 +178,7 @@ ds = ds.map(to_chat_format, remove_columns=ds.column_names)
 # Train/Validation 9:1 분할
 ds = ds.train_test_split(test_size=0.1, seed=42)
 print(f"Train: {len(ds['train'])} / Eval: {len(ds['test'])}")
-# Train: 9320 / Eval: 1036   ← 🔴 실제 출력 수치로 확인
+# Train: 9320 / Eval: 1036
 ```
 
 채팅 템플릿 적용과 라벨 마스킹(loss를 assistant 응답에만 적용)은 `SFTTrainer`가 `messages` 필드를 인식해 자동으로 처리합니다.
@@ -237,7 +237,6 @@ $W$가 $d \times d$ 행렬이라면, $A$는 $r \times d$, $B$는 $d \times r$의
 **초기화와 스케일링.** $A$는 가우시안으로, $B$는 0으로 초기화합니다. 따라서 학습 시작 시 $\Delta W = BA = 0$이 되어, 모델은 베이스 모델과 동일한 상태에서 출발합니다(안정적인 학습). 또한 적용 시 $\frac{\alpha}{r}$로 스케일링하여 랭크에 따른 크기 변화를 보정합니다(본 프로젝트는 $\alpha=32, r=16$).
 
 ![LoRA 다이어그램](images/lora_diagram.png)
-> 🔴 `images/lora_diagram.png` 업로드 필요 (QLoRA 파이프라인 다이어그램)
 
 **예시 계산 (Qwen2.5-3B의 `q_proj` 기준, $d=2048$):**
 
@@ -331,7 +330,7 @@ lora_config = LoraConfig(
 trainable params: 29,941,760 || all params: 3,115,749,376 || trainable%: 0.9610
 ```
 
-즉 전체 31억 파라미터 중 **약 0.96%인 3천만 개**만 학습합니다. (🔴 본인 실행 출력과 일치하는지 확인)
+즉 전체 31억 파라미터 중 **약 0.96%인 3천만 개**만 학습합니다.
 
 #### 학습 하이퍼파라미터 (`SFTConfig`)
 
@@ -394,10 +393,11 @@ plt.savefig("images/train_loss.png", dpi=150, bbox_inches="tight")
 ```
 
 ![Training Loss](images/train_loss.png)
-> 시작 loss : 4.506  →  종료 loss : 1.102  
-> 학습 시간 : 244.7 분  
-> 최대 GPU 메모리 : 6.09 GB  
-> 어댑터 크기 : 약 120 MB (fp32, HF 업로드 확인됨)
+| Epoch | Train loss | Eval loss |  
+| --- | --- | --- |
+| 1 | 1.588500 | 1.631925 |
+| 2 | 1.324800 | 1.562045 |
+| 3 | 1.102300 | 1.609907 |
 
 #### 자동 평가 지표
 
