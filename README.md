@@ -18,8 +18,7 @@
 
 [![발표 영상 썸네일](images/youtube_thumbnail.png)](https://youtu.be/YOUR_VIDEO_ID)
 
-> 위 이미지를 클릭하면 발표 영상으로 이동합니다 (약 7분).
-> 🔴 `YOUR_VIDEO_ID`를 실제 영상 ID로 교체하고, `images/youtube_thumbnail.png`를 업로드하세요.
+> 위 이미지를 클릭하면 발표 영상으로 이동합니다.
 
 ### 🤗 학습된 모델
 
@@ -347,7 +346,7 @@ trainable params: 29,941,760 || all params: 3,115,749,376 || trainable%: 0.9610
 | Optimizer | paged_adamw_8bit | 메모리 절약 (QLoRA) |
 | Gradient checkpointing | True | 메모리↓ (연산량은 다소↑) |
 
-> **실행 환경.** 무료 Colab + T4 기준 실측 약 4시간 5분 (더 빠른 A100에서는 30분~1시간 내외로 단축 가능). 체크포인트를 Google Drive에 주기적으로 저장(`save_steps=200`)하도록 설정해, 세션이 끊겨도 이어서 학습할 수 있게 했습니다.
+> **실행 환경.** 무료 Colab + T4 기준 실측 약 4시간 5분 (더 빠른 A100에서는 2시간 내외로 단축 가능). 체크포인트를 Google Drive에 주기적으로 저장(`save_steps=200`)하도록 설정해, 세션이 끊겨도 이어서 학습할 수 있게 했습니다.
 ---
 
 ## IV. Evaluation & Analysis
@@ -438,10 +437,10 @@ plt.savefig("images/train_loss.png", dpi=150, bbox_inches="tight")
 
 | 평가 기준 | 베이스 모델 | 파인튜닝 모델 |
 | --- | --- | --- |
-| 자연스러움 (1~5) | 🔴 | 🔴 |
-| 신조어 활용 정확도 (1~5) | 🔴 | 🔴 |
+| 자연스러움 (1~5) |  |  |
+| 신조어 활용 정확도 (1~5) |  |  |
 
-> **평가자 간 일치도** (3명이 1점 이내로 일치한 비율): 자연스러움 🔴%, 신조어 정확도 🔴%
+> **평가자 간 일치도** (3명이 1점 이내로 일치한 비율): 자연스러움 %, 신조어 정확도 %
 
 ### 3. 효율성 분석 — LoRA의 진짜 강점
 
@@ -577,11 +576,21 @@ koculture-slm-finetuning/
 > **학습된 어댑터는 이 저장소에 두지 않습니다.** 어댑터(~120MB)는 깃허브의 파일 크기 제한(50MB 경고/100MB 거부)에 걸리고, 모델 가중치는 Git으로 관리하기에 부적합합니다. 대신 [Hugging Face Hub](https://huggingface.co/DdingDDing0103/koculture-qwen2.5-3b-lora)에 올리고 코드에서는 repo id로 불러옵니다. 학습 산출물 폴더는 `.gitignore`로 제외합니다.
 
 ```gitignore
-# .gitignore
+# 학습 산출물 — 어댑터는 Hugging Face Hub에 업로드 (repo에 두지 않음)
 output/
 checkpoints/
-.ipynb_checkpoints/
+
+# 사람 평가 정답 키 (블라인드 유지를 위해 비공개)
+answer_key_DO_NOT_OPEN.csv
+
+# Python / Jupyter
 __pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# 시스템 / 환경
+.env
+.DS_Store
 ```
 
 ---
