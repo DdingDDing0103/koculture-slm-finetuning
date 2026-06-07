@@ -451,6 +451,7 @@ plt.savefig("images/train_loss.png", dpi=150, bbox_inches="tight")
 | 신조어 활용 정확도 (1~5) | 2.99 | **3.89** | +0.90 |
 
 > **평가자 간 일치도** (3명이 1점 이내로 일치한 비율): 자연스러움 79%, 신조어 정확도 63%
+> 채점 원자료(평가자 3명)와 A/B 정답 매핑은 [`eval/`](eval/) 폴더에 공개되어 있습니다.
 
 **해석.** 자연스러움이 2.01 → 4.01로 가장 크게 향상되어, 정성 분석(톤 변화)과 BERTScore(+0.08)가 가리킨 **말투 적응의 성공**을 사람 평가가 강하게 뒷받침합니다. 반면 신조어 정확도는 2.99 → 3.89로 향상폭(+0.90)이 더 작은데, 이는 **의미 학습이 말투 학습보다 어려운 과제**임을 보여줍니다. (베이스의 신조어 점수가 2.99로 다소 높은 것은, 베이스가 신조어를 *틀리게 쓰기보다 회피하는* 안전한 일반 답변을 자주 내놓아 루브릭 3점에 걸렸기 때문입니다.) 평가자 간 일치도가 자연스러움(79%)보다 신조어 정확도(63%)에서 낮은 것도, "신조어 의미를 제대로 썼는가"에 대한 판단이 본질적으로 더 주관적임을 시사합니다.
 
@@ -588,6 +589,9 @@ koculture-slm-finetuning/
 ├── scripts/
 │   ├── train.py
 │   └── inference.py
+├── eval/
+│   ├── human_eval_results.xlsx        ← 사람 평가 채점 원자료 (평가자 3명 × 50문항)
+│   └── human_eval_answer_key.csv      ← A/B ↔ base/파인튜닝 매핑 (집계 재현용)
 ├── images/                            ← 다이어그램, 그래프
 ├── requirements.txt
 └── .gitignore                         ← output/, checkpoints/ 등 제외
@@ -599,9 +603,6 @@ koculture-slm-finetuning/
 # 학습 산출물 — 어댑터는 Hugging Face Hub에 업로드 (repo에 두지 않음)
 output/
 checkpoints/
-
-# 사람 평가 정답 키 (블라인드 유지를 위해 비공개)
-answer_key_DO_NOT_OPEN.csv
 
 # Python / Jupyter
 __pycache__/
