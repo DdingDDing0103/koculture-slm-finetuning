@@ -2,9 +2,6 @@
 output/
 checkpoints/
 
-# 사람 평가 정답 키 (블라인드 유지를 위해 비공개)
-answer_key_DO_NOT_OPEN.csv
-
 # Python / Jupyter
 __pycache__/
 *.py[cod]
