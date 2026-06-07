@@ -223,7 +223,7 @@ print(f"Train: {len(ds['train'])} / Eval: {len(ds['test'])}")
 
 파인튜닝의 학습 방식은 사전학습과 동일한 **다음 토큰 예측(next-token prediction)**입니다. 모델은 시퀀스의 각 위치에서 다음에 올 토큰의 확률분포를 출력하고, 실제 정답 토큰에 대한 **교차 엔트로피 손실(cross-entropy loss)**을 최소화합니다.
 
-$$\mathcal{L} = -\sum_{t} \log P_\theta(x_t \mid x_{<t})$$
+$$\mathcal{L} = -\sum_{t} \log P_\theta(x_t \mid x_1, \dots, x_{t-1})$$
 
 다만 지도학습 파인튜닝(SFT)에는 한 가지 핵심 차이가 있습니다. **손실을 assistant의 응답 토큰에만 적용**하고 사용자 질문(prompt) 토큰에는 적용하지 않는 **라벨 마스킹(label masking)**입니다. 모델이 배워야 할 것은 *질문을 따라 쓰는 법*이 아니라 *질문에 어떻게 응답하는가*이기 때문입니다. 본 프로젝트에서는 `SFTTrainer`가 `messages` 형식을 인식해 이 마스킹을 자동으로 처리합니다.
 
