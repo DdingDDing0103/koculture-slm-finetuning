@@ -16,7 +16,7 @@
 
 ### 📺 발표 영상
 
-[![발표 영상]](https://youtu.be/xzqX_ItD9ao?si=sF_pRhh4oSW9dGqm)
+[[발표 영상]](https://youtu.be/xzqX_ItD9ao?si=sF_pRhh4oSW9dGqm)
 
 
 ### 🤗 학습된 모델
