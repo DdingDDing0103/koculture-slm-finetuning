@@ -16,7 +16,7 @@
 
 ### 📺 발표 영상
 
-[![발표 영상 썸네일](images/youtube_thumbnail.png)](https://youtu.be/YOUR_VIDEO_ID)
+[![발표 영상 썸네일](images/youtube_thumbnail.png)]([https://youtu.be/YOUR_VIDEO_ID](https://youtu.be/xzqX_ItD9ao?si=sF_pRhh4oSW9dGqm))
 
 > 위 이미지를 클릭하면 발표 영상으로 이동합니다.
 
